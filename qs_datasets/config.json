@@ -1,0 +1,30 @@
+{
+    "annotation": {
+        "min_num_lidar_pts": 5
+    },
+    "lidar": {
+        "num_frame": 3
+    },
+    "dataset": {
+        "name": "nuscenes",
+        "root": "/home/bruce/work/perception/qs_datasets/nuscenes",
+        "split": {
+            "train": [
+                {
+                    "start": 1,
+                    "end": 500
+                },
+                {
+                    "start": 501,
+                    "end": 1000
+                }
+            ],
+            "val": [
+                {
+                    "start": 1001,
+                    "end": 1100
+                }
+            ]
+        }
+    }
+}
