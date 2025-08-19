@@ -1,4 +1,4 @@
-load("@aspect_rules_py//py:defs.bzl",  "py_binary")
+load("@aspect_rules_py//py:defs.bzl",  "py_library")
 load("@rules_python//python:defs.bzl", "py_test")
 
 package(default_visibility = ["//visibility:public"])
@@ -10,10 +10,11 @@ py_test(
     ],
     deps = [
       ":pose",
+      "@pip//pytest",
     ],
 )
 
-py_binary(
+py_library(
     name = "pose",
     srcs = ["pose.py"],
     deps = [
