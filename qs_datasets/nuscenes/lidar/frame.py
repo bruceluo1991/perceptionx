@@ -3,6 +3,7 @@ import numpy as np
 from typing import List, Optional, Tuple
 import os
 from scipy.spatial.transform import Rotation
+import open3d as o3d
 
 
 class Frame:
@@ -250,7 +251,6 @@ if __name__ == "__main__":
     #     if annotation[4] < 10:
     #         continue
     #     print(annotation)
-    import open3d as o3d
 
     geometry = []
     pcd = o3d.geometry.PointCloud()
