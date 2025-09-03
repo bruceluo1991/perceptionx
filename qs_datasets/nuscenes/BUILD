@@ -1,4 +1,4 @@
-load("@aspect_rules_py//py:defs.bzl",  "py_library")
+load("@aspect_rules_py//py:defs.bzl",  "py_library", "py_binary")
 load("@rules_python//python:defs.bzl", "py_test")
 
 package(default_visibility = ["//visibility:public"])
@@ -21,4 +21,14 @@ py_library(
         "@pip//numpy",
         "@pip//scipy",
     ],
+)
+
+py_binary(
+    name="dataset_generator",
+    srcs=["dataset_generator.py"],
+    deps=[
+        ":pose",
+        "@pip//numpy",
+        "@pip//scipy",
+    ]
 )
