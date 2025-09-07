@@ -5,6 +5,7 @@ import os
 from scipy.spatial.transform import Rotation
 import open3d as o3d
 
+from qs_datasets.nuscenes.constants import DATA_ROOT, QS_METADATA_ROOT
 
 class Frame:
     def __init__(
@@ -223,9 +224,12 @@ class Frame:
         return np.array(filtered_annotations)
 
 if __name__ == "__main__":
-    data_root = "/mnt/data/datasets/nuScenes/"
+    data_root = DATA_ROOT
+    from sys import argv
     frame_file = os.path.join(
-        "/home/bruce/work/perception/output/generated/nuScenes/scene-1109/LIDAR_TOP/frames.json"
+        QS_METADATA_ROOT,
+        f"scene-{argv[1]}",
+        "LIDAR_TOP/frames.json"
     )
     import json
 
@@ -236,7 +240,9 @@ if __name__ == "__main__":
         t=np.array(frame_data["calibrated_sensor"]["translation"]),
     )
     annotation_file = os.path.join(
-        "/home/bruce/work/perception/output/generated/nuScenes/scene-1109/LIDAR_TOP/annotations.json"
+        QS_METADATA_ROOT,
+        f"scene-{argv[1]}",
+        "LIDAR_TOP/annotations.json"
     )
     annotation_data = json.load(open(annotation_file, "r"))
 
@@ -245,7 +251,7 @@ if __name__ == "__main__":
     f_name = f["filename"]
     frame = Frame(data_root, f, h_fs, annotation_data[f_name], calibrated_sensor_pose)
 
-    points = frame.get_points(0)
+    points = frame.get_points(2)
     annotations = frame.get_annotations()
     # for annotation in annotations:
     #     if annotation[4] < 10:

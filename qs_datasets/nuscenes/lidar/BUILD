@@ -12,6 +12,7 @@ py_binary(
         "@pip//scipy",
         "@pip//open3d",
         "//qs_datasets/nuscenes:pose",
+        "//qs_datasets/nuscenes:constants",
     ],
 )
 
@@ -21,6 +22,7 @@ py_binary(
     deps = [
         "@pip//numpy",
         "@pip//scipy",
+        "//qs_datasets/nuscenes:constants",
         "//qs_datasets/nuscenes:pose",
         ":frame",
     ],

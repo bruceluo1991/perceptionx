@@ -7,11 +7,9 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 from typing import Optional, Set, Dict, List, Any
 
+from qs_datasets.nuscenes.constants import IN_ROOT_FOLDER, QS_METADATA_ROOT 
 
-DATA_ROOT = "/mnt/data/datasets/nuScenes/"
-OUTPUT_ROOT = "output/generated/nuScenes/"
 
-IN_ROOT_FOLDER = os.path.join(DATA_ROOT, "v1.0-trainval")
 IN_CALIB_SENSOR_FILE = "calibrated_sensor.json"
 IN_SAMPLE_FILE = "sample.json"
 IN_SAMPLE_DATA_FILE = "sample_data.json"
@@ -292,7 +290,7 @@ class SceneGenerator:
         self._dict_data = dict_data
         self._name = self._dict_data["name"]
         self._token = self._dict_data["token"]
-        self._output_dir = os.path.join(OUTPUT_ROOT, self._name)
+        self._output_dir = os.path.join(QS_METADATA_ROOT, self._name)
         os.makedirs(self._output_dir, exist_ok=True)
         self._description_file = os.path.join(self._output_dir, OUT_DESCRIPTION_FILE)
         self._generate_description()
@@ -409,14 +407,14 @@ def _test():
     for dict_data in dict_datas:
         if dict_data["name"] != "scene-0123":
             continue
-        scene_generator = SceneGenerator(OUTPUT_ROOT, dict_data)
+        scene_generator = SceneGenerator(QS_METADATA_ROOT, dict_data)
         scene_generator.generate("LIDAR_TOP")
 
 def _main():
     with open(os.path.join(IN_ROOT_FOLDER, "scene.json"), "r", encoding="utf8") as f:
         dict_datas = json.load(f)
     for dict_data in dict_datas:
-        scene_generator = SceneGenerator(OUTPUT_ROOT, dict_data)
+        scene_generator = SceneGenerator(QS_METADATA_ROOT, dict_data)
         scene_generator.generate("LIDAR_TOP")
 
 if __name__ == "__main__":

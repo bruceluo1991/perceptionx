@@ -23,10 +23,16 @@ py_library(
     ],
 )
 
+py_library(
+    name = "constants",
+    srcs = ["constants.py"],
+)
+
 py_binary(
     name="dataset_generator",
     srcs=["dataset_generator.py"],
     deps=[
+        ":constants",
         ":pose",
         "@pip//numpy",
         "@pip//scipy",

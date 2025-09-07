@@ -2,6 +2,7 @@ import json
 import os
 from qs_datasets.nuscenes.pose import Pose
 from qs_datasets.nuscenes.lidar.frame import Frame
+from qs_datasets.nuscenes.constants import QS_METADATA_ROOT
 
 import numpy as np
 
@@ -87,7 +88,7 @@ class Scenes:
         for index in indices:
             # example: "/home/bruce/work/perception/output/generated/nuScenes/scene-0009"
             scene_folder = os.path.join(
-                "/home/bruce/work/perception/output/generated/nuScenes",
+                QS_METADATA_ROOT,
                 f"scene-{index:04d}",
             )
             print(scene_folder)
@@ -107,7 +108,7 @@ if __name__ == "__main__":
     MISSING_SCENE_IDS = set(
         json.load(
             open(
-                "/home/bruce/work/perception/qs_datasets/nuscenes/lidar/MISSING_SCENES.json"
+                "qs_datasets/nuscenes/lidar/MISSING_SCENES.json"
             )
         )["missing_ids"]
     )
